@@ -8,22 +8,13 @@ class BbsController extends Controller
 {
     public function index()
     {
-        $bbs = Bb::latest()->get();
-        $s = "Advertisement\r\n\r\n";
-        foreach ($bbs as $bb) {
-            $s .= $bb->title . "\r\n";
-            $s .= $bb->price . " USD.\r\n";
-            $s .=  "\r\n";
+        $context = ['bbs'=>Bb::latest()->get()];
+        return view('index', $context);
 
-        }
-        return response($s)->header('Content-type', 'text/plain');
     }
 
-    public function detail($bb){
-        $bb = Bb::find($bb);
-        $s = $bb->title . "\r\n";
-        $s .= $bb->price . " USD.\r\n";
-        $s .=  "\r\n";
-        return response($s)->header('Content-type', 'text/plain');
+    public function detail(Bb $bb){
+
+        return view('detail', ['bb' => $bb]);
     }
 }
