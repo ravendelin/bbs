@@ -1,0 +1,9 @@
+version: "4.30.0"
+
+services:
+  nginx:
+    image: "nginx:stable-alpine"
+    ports:
+      - "8000:80"
+  php:
+  mysql:
